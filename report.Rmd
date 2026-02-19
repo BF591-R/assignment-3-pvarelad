@@ -233,5 +233,16 @@ this plot.
 ```{r boxplot from long format data using ggplot2, echo=FALSE}
 library(ggplot2)
 
+ggplot(long_format_data, aes(x = hgnc, y = expression, fill = gene_set)) +
+  geom_boxplot() +
+  facet_wrap(~ gene_set, scales = "free_x") +  # separate panels for good/bad
+  labs(
+    title = "Expression by Condition",
+    x = "Gene",
+    y = "Expression",
+    fill = "Gene set"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ```
